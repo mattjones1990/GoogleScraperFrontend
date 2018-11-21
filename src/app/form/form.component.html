@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+        <h5 id="start">Insert your search options below:</h5>
+
+        <form id="form">
+            <div class="form-group">
+              <label for="URL">URL</label>
+              <input 
+                type="text" class="form-control" id="URL" aria-describedby="urlHelp" placeholder="{{ url }}" required [(ngModel)]="url" name="url">
+              <small id="emailHelp" class="form-text text-muted">To return more results, use less specific search terms, such as 'bbc'</small>
+            </div>
+        
+            <hr>
+        
+            <div class="form-group">
+              <label for="searchKeywordOne">Search Term One</label>
+              <input type="text" class="form-control" id="searchKeywordOne" placeholder="{{ url }}" required [(ngModel)]="searchKeywordOne" name="searchKeywordOne">
+            </div>
+        
+            <div class="form-group">
+                <label for="searchKeywordTwo">Search Term Two</label>
+                <input type="text" class="form-control" id="searchKeywordTwo" placeholder="{{  searchKeywordOne }}" [(ngModel)]="searchKeywordTwo" name="searchKeywordTwo">
+            </div>
+        
+            <div class="form-group">
+                  <label for="searchKeywordThree">Search Term Three</label>
+                  <input type="text" class="form-control" id="searchKeywordThree" placeholder="{{ searchKeywordOne }}" [(ngModel)]="searchKeywordThree" name="searchKeywordThree">
+            </div>
+        
+            <hr>
+        
+            <div class="form-group">
+              <label for="searchResults">Search Results</label>
+              <select class="form-control" id="searchResults" [(ngModel)]="searchResults" name="searchResults">
+                <option>1</option>
+                <option>10</option>
+                <option>50</option>
+                <option>100</option>
+                <option>200</option>
+                <option>500</option>
+                <option>1000</option>
+                <option>2000</option>
+                <option>5000</option>
+                <option>10000</option>
+                <option>50000</option>
+              </select>
+              <small id="searchResultsHelp" class="form-text text-muted">How many results would you like to return in your search</small>
+            </div>
+           
+            <button type="submit" class="btn btn-primary" (click)="getData()">Search</button>
+          </form>
+        
+            <hr>       
+            <h5 id="start">Your results will appear on the right -></h5>
+    </div>
+
+    <div class="col-md-5" *ngIf="message">
+      <div *ngIf="errorMessageBool">
+        <p id="errorMessage">{{ errorMessage }}</p>
+      </div>
+
+      <div *ngIf="!errorMessageBool && submitted">
+        <h5 id="result">Success!</h5>
+        <p> X amount of results found in the y top searches.</p>
+        </div>
+
+    </div>
+    <div class="col-md-5" *ngIf="!message">
+        <p>About</p>
+      </div>
+
+  </div>
+</div>
+

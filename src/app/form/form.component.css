@@ -1,0 +1,24 @@
+.btn {
+    background-color: #74a8fc;
+    border: none; 
+}
+
+#errorMessage {
+    color: red;
+    font-weight: bold;
+}
+
+#form {
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#result {
+    margin-top: 40px;
+}
+
+#start {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
