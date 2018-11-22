@@ -1,0 +1,43 @@
+.btn {
+    background-color: #74a8fc;
+    border: none; 
+}
+
+#errorMessage {
+    color: red;
+    font-weight: bold;
+}
+
+#form {
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+li {
+    display: block;
+}
+
+li:before {
+    /*Using a Bootstrap glyphicon as the bullet point*/
+    content: "\e080";
+    font-family: 'Glyphicons Halflings';
+    font-size: 9px;
+    float: left;
+    margin-top: 4px;
+    margin-left: -17px;
+    color: #CCCCCC;
+}
+
+#result {
+    margin-top: 40px;
+}
+
+#searchHelp {
+    float: right; 
+}
+
+#start {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
