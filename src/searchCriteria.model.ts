@@ -4,6 +4,5 @@ export class searchCriteria {
     public SearchCriteriaArray: string[][];
     public UrlSearchString: string;
     
-    
     constructor() { }
     }

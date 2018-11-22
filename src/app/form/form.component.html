@@ -6,26 +6,27 @@
         <form id="form">
             <div class="form-group">
               <label for="URL">URL</label>
+              <small id="searchHelp" class="form-text text-danger">*Required</small>
               <input 
                 type="text" class="form-control" id="URL" aria-describedby="urlHelp" placeholder="{{ url }}" required [(ngModel)]="url" name="url">
               <small id="emailHelp" class="form-text text-muted">To return more results, use less specific search terms, such as 'bbc'</small>
             </div>
         
-            <hr>
-        
+            <hr>        
             <div class="form-group">
               <label for="searchKeywordOne">Search Term One</label>
-              <input type="text" class="form-control" id="searchKeywordOne" placeholder="{{ url }}" required [(ngModel)]="searchKeywordOne" name="searchKeywordOne">
+              <small id="searchHelp" class="form-text text-danger">*Required</small>
+              <input type="text" class="form-control" id="searchKeywordOne" placeholder="{{ searchKeywordOne }}" required [(ngModel)]="searchKeywordOne" name="searchKeywordOne">
             </div>
         
             <div class="form-group">
                 <label for="searchKeywordTwo">Search Term Two</label>
-                <input type="text" class="form-control" id="searchKeywordTwo" placeholder="{{  searchKeywordOne }}" [(ngModel)]="searchKeywordTwo" name="searchKeywordTwo">
+                <input type="text" class="form-control" id="searchKeywordTwo" placeholder="{{  searchKeywordTwo }}" [(ngModel)]="searchKeywordTwo" name="searchKeywordTwo">
             </div>
         
             <div class="form-group">
                   <label for="searchKeywordThree">Search Term Three</label>
-                  <input type="text" class="form-control" id="searchKeywordThree" placeholder="{{ searchKeywordOne }}" [(ngModel)]="searchKeywordThree" name="searchKeywordThree">
+                  <input type="text" class="form-control" id="searchKeywordThree" placeholder="{{ searchKeywordThree }}" [(ngModel)]="searchKeywordThree" name="searchKeywordThree">
             </div>
         
             <hr>
@@ -33,18 +34,9 @@
             <div class="form-group">
               <label for="searchResults">Search Results</label>
               <select class="form-control" id="searchResults" [(ngModel)]="searchResults" name="searchResults">
-                <option>1</option>
-                <option>10</option>
-                <option>50</option>
-                <option>100</option>
-                <option>200</option>
-                <option>500</option>
-                <option>1000</option>
-                <option>2000</option>
-                <option>5000</option>
-                <option>10000</option>
-                <option>50000</option>
+                <option *ngFor="let r of searchResultOptions">{{ r }}</option>
               </select>
+              
               <small id="searchResultsHelp" class="form-text text-muted">How many results would you like to return in your search</small>
             </div>
            
@@ -52,24 +44,89 @@
           </form>
         
             <hr>       
-            <h5 id="start">Your results will appear on the right -></h5>
+            <h5 id="start">Your results will appear on the right.</h5>
     </div>
 
     <div class="col-md-5" *ngIf="message">
       <div *ngIf="errorMessageBool">
+        <h5 id="result">Error Occured!</h5>
         <p id="errorMessage">{{ errorMessage }}</p>
       </div>
 
-      <div *ngIf="!errorMessageBool && submitted">
+      <div *ngIf="!errorMessageBool && submitted && !noResultsFound">
         <h5 id="result">Success!</h5>
-        <p> X amount of results found in the y top searches.</p>
-        </div>
+        <p><strong>{{ returnedResults }}</strong> results found in the top <strong>{{ searchResults }}</strong> searches.</p>
 
-    </div>
-    <div class="col-md-5" *ngIf="!message">
-        <p>About</p>
+        <!-- Table here -->
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Search Number</th>
+                <th scope="col">URL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let result of returnedArray">              
+                  <td>{{ result.m_Item1 }}</td>
+                  <td><a target="_blank" href="{{ result.m_Item2 }}">{{ result.m_Item2 }}</a></td>
+              </tr>
+            </tbody>
+          </table>
       </div>
 
+      <div *ngIf="noResultsFound && submitted">
+        <h5 id="result">No Results Found!!</h5>
+        <p>The search returned 0 results.</p>
+      </div>
+
+    </div>
+    
+    <div class="col-md-5" *ngIf="!message">
+        <h5 id="start">About the Project</h5>
+
+        <h6>General Information</h6>
+        <p>
+          First thing's first...here's a <a target="_blank" href="https://postimg.cc/pm4knY8g">screenshot</a> in case it completely dies on the day!
+        </p>
+
+        <hr>
+        <p>
+          The search can be ran using just the URL and one search term, but up to three terms can be used if required.
+        </p>
+
+        <hr>
+        <p>
+            The second page column will either return <strong>'Success!'</strong>, or <strong>'Error Occured!'</strong> 
+            depending on the outcome. Currently, a generic message will appear if the user 
+            input is not sufficient, or a more tailored message should the search return zero results.
+        </p>
+
+        <br>
+        <h6>Software Used</h6>
+        <ul>
+            <li>Visual Studio 2017</li>
+            <li>Angular 7.0.5</li>
+        </ul>
+
+        <br>
+        <h6>Problems</h6>
+        <ul>
+            <li>Whole (shared office) IP blocked by Google due to my relentless searching via a program!</li>
+            <li>Having to use a VPN from various countries to carry on.</li>
+            <li>Took some time to get used to Angular again.</li>
+            <li>Not fully sure if my REGEX is working 100%.</li>
+        </ul>
+
+        <br>
+        <h6>Extra Information</h6>
+        <p>If there are cross browser issues, use the following code using Windows + R:</p>
+        <ul>
+            <li>Run the following to open a new Chrome instance with security settings disabled: <strong>chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security</strong></li>
+            <li>Use URL <strong>http://localhost:XXXX/</strong> to access the local project (replace XXXX with your port [typically 4200]).</li>
+        </ul>
+
+        <p></p>
+    </div>
   </div>
 </div>
 
