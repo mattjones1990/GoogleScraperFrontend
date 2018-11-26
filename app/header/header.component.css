@@ -1,0 +1,19 @@
+.btn {
+    background-color: #74a8fc;
+    border: none; 
+}
+
+#headerDiv {
+    margin-top: 40px;
+    padding-bottom: 40px;
+}
+
+#headerMenu {
+    float: right; 
+}
+
+#headerTitle {
+    float: left;
+    color: #74a8fc;
+}
+
